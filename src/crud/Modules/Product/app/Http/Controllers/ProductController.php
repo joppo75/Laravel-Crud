@@ -14,7 +14,7 @@ use Modules\Product\Enums\StatusProduct;
 
 class ProductController extends Controller implements ProductControllerInterface
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $product = Product::select('id', 'name', 'description', 'price')->get();
 
@@ -24,7 +24,7 @@ class ProductController extends Controller implements ProductControllerInterface
         ]);
     }
 
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -40,7 +40,7 @@ class ProductController extends Controller implements ProductControllerInterface
         
     }
 
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, $id): JsonResponse
     {
 
         $product = Product::findOrFail($id);
@@ -58,7 +58,7 @@ class ProductController extends Controller implements ProductControllerInterface
         ],200);
     }
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $product = Product::findOrFail($id);
 
